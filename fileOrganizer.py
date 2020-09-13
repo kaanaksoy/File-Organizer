@@ -5,7 +5,7 @@ import json
 import time
 import re
 
-from FileOrganizer.locations import folder_paths
+from locations import folder_paths
 
 
 folder_to_track = folder_paths['srcPath']
@@ -31,7 +31,7 @@ observer.start()
 
 def FileClassSearcher(fileClass):
     for paths in folder_paths:
-        if filename == path:
+        if fileClass == path:
             return path
 
 
