@@ -3,22 +3,37 @@ from watchdog.events import FileSystemEventHandler
 import os
 import json
 import time
+import re
 
+from FileOrganizer.locations import folder_paths
+
+
+folder_to_track = folder_paths['srcPath']
+folder_destination = folder_paths['destRootPath']
+finalDestination = ''
 
 class MyHandler(FileSystemEventHandler):
     i = 1
     def on_modified(self, event):
         for filename in os.listdir(folder_to_track):
-            src = folder_to_track + "/" + filename
-            new_destionation = folder_destination + "/" + filename
-            os.rename(src, new_destionation)
+            fileClass = re.search("^\d\d[-]\d\d\d", filename)
+            if fileClass:
+                finalDestination = FileClassSearcher(fileClass)
+                src = folder_to_track + "/" + filename
+                filename.replace(finalDestination, '')
+                new_destionation = folder_destination + finalDestination + "/" + filename
+                os.rename(src, new_destionation)
 
-folder_to_track = '/Users/kaan/Downloads/testFolder'
-folder_destination = '/Users/kaan/Desktop/secondFolder'
 event_handler = MyHandler()
 observer = Observer()
 observer.schedule(event_handler, folder_to_track, recursive=True)
 observer.start()
+
+def FileClassSearcher(fileClass):
+    for paths in folder_paths:
+        if filename == path:
+            return path
+
 
 try:
     while True:
