@@ -1,12 +1,10 @@
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from locations import folder_paths
 import os
 import json
 import time
 import re
-
-from locations import folder_paths
-
 
 folder_to_track = folder_paths['srcPath']
 folder_destination = folder_paths['destRootPath']
