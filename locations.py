@@ -7,5 +7,5 @@ folder_paths = {
         '36-202':    '/Statistics',
         '67-262':    '/Databases',
         '17-313':    '/Foundations of Software Engineering',
-        '82-141':   'Spanish',
+        '82-141':   '/Spanish',
         }
