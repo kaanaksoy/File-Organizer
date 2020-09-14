@@ -10,8 +10,10 @@ folder_to_track = folder_paths['srcPath']
 folder_destination = folder_paths['destRootPath']
 finalDestination = ''
 
+
 class MyHandler(FileSystemEventHandler):
     i = 1
+
     def on_modified(self, event):
         for filename in os.listdir(folder_to_track):
             fileClass = re.search("^\d\d[-]\d\d\d", filename)
@@ -21,6 +23,7 @@ class MyHandler(FileSystemEventHandler):
                 filename = filename[6:]
                 new_destionation = folder_destination + finalDestination + "/" + filename
                 os.rename(src, new_destionation)
+
 
 event_handler = MyHandler()
 observer = Observer()
